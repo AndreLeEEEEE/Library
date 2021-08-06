@@ -11,7 +11,7 @@ function Book(name, author, pages, read) {
 }
 
 document.getElementById("addBook").
-        addEventListener("click", addBookToLibrary());
+        addEventListener("click", () => addBookToLibrary());
 
 function addBookToLibrary() {
     let div = document.querySelector("#shelf");
@@ -27,7 +27,7 @@ function addBookToLibrary() {
 
         // Book title
         let title = document.createElement("p");
-        title.textContent = `Title: ${book.name}`;
+        title.innerHTML = `Title: <b>${book.name}</b>`;
         bookDiv.appendChild(title);
 
         // Book author
@@ -45,14 +45,15 @@ function addBookToLibrary() {
         readStatus(toggleRead, book.read);
         toggleRead.addEventListener("click", function() {
             book.read = !book.read;
-            readStatus(toggleRead, book.read)
+            readStatus(toggleRead, book.read);
         });
         bookDiv.appendChild(toggleRead);
 
         // Remove from library
         let removeButton = document.createElement("button");
         removeButton.textContent = "Remove book";
-        removeButton.style.backgroundColor = "red";
+        removeButton.setAttribute("class", "remove");
+        removeButton.addEventListener("click", () => removeBook(book));
         bookDiv.appendChild(removeButton);
     });
 }
@@ -66,4 +67,9 @@ function readStatus(toggleRead, isRead) {
         toggleRead.textContent = "Not Read Yet";
         toggleRead.setAttribute("class", "not-read");
     }
+}
+
+function removeBook(currentBook) {
+    myLibrary = myLibrary.filter(book => book !== currentBook);
+    addBookToLibrary();
 }
