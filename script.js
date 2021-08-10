@@ -14,6 +14,14 @@ document.getElementById("addBook").
         addEventListener("click", () => addBookToLibrary());
 
 function addBookToLibrary() {
+    document.getElementById("form").style.display = "block";
+}
+
+function closeForm() {
+    document.getElementById("form").style.display = "none";
+}
+
+function restockLibrary() {
     let div = document.querySelector("#shelf");
     while (div.hasChildNodes()) {
         div.removeChild(div.lastElementChild);
@@ -71,5 +79,5 @@ function readStatus(toggleRead, isRead) {
 
 function removeBook(currentBook) {
     myLibrary = myLibrary.filter(book => book !== currentBook);
-    addBookToLibrary();
+    restockLibrary();
 }
