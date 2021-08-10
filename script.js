@@ -13,15 +13,14 @@ function Book(name, author, pages, read) {
 document.getElementById("addBook").
         addEventListener("click", () => addBookToLibrary());
 
+document.querySelector(".affirmative").
+        addEventListener("click", () => processNewBook());
+
 document.querySelector(".non-affirmative").
         addEventListener("click", () => clearForm());
 
 function addBookToLibrary() {
     document.getElementById("form").style.display = "block";
-}
-
-function closeForm() {
-    document.getElementById("form").style.display = "none";
 }
 
 function clearForm() {
@@ -31,7 +30,7 @@ function clearForm() {
     if (document.getElementById("isread").checked) {
         document.getElementById("isread").checked = false
     }
-    closeForm();
+    document.getElementById("form").style.display = "none";
 }
 
 function restockLibrary() {
@@ -92,5 +91,16 @@ function readStatus(toggleRead, isRead) {
 
 function removeBook(currentBook) {
     myLibrary = myLibrary.filter(book => book !== currentBook);
+    restockLibrary();
+}
+
+function processNewBook() {
+    let title = document.getElementById("booktitle").value;
+    let author = document.getElementById("bookauthor").value;
+    let pages = document.getElementById("bookpages").value;
+    let read = document.getElementById("isread").checked;
+    let newBook = new Book(title, author, pages, read);
+    myLibrary.push(newBook);
+    clearForm();
     restockLibrary();
 }
