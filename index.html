@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <button id="addBook" onclick="addBookToLibrary()">New Book</button>
+    <button id="addBook">New Book</button>
     <div id="pop-up">
         <div id="form">
             <form action="/action_page.php">
@@ -22,14 +22,14 @@
                 </div>
                 <div class="input-field">
                     <label for="bookpages">Page count:</label>
-                    <input type="number" id="bookpages">
+                    <input type="number" id="bookpages" min="1">
                 </div>
                 <div class="input-field">
                     <label for="isread">Read yet?</label>
                     <input type="checkbox" id="isread">
                 </div>
                 <button type="submit" class="affirmative">Done</button>
-                <button type="button" class="non-affirmative" onclick="closeForm()">Cancel</button>
+                <button type="button" class="non-affirmative">Cancel</button>
             </form>
         </div>
     </div>

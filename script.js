@@ -13,12 +13,25 @@ function Book(name, author, pages, read) {
 document.getElementById("addBook").
         addEventListener("click", () => addBookToLibrary());
 
+document.querySelector(".non-affirmative").
+        addEventListener("click", () => clearForm());
+
 function addBookToLibrary() {
     document.getElementById("form").style.display = "block";
 }
 
 function closeForm() {
     document.getElementById("form").style.display = "none";
+}
+
+function clearForm() {
+    document.getElementById("booktitle").value = "";
+    document.getElementById("bookauthor").value = "";
+    document.getElementById("bookpages").value = "";
+    if (document.getElementById("isread").checked) {
+        document.getElementById("isread").checked = false
+    }
+    closeForm();
 }
 
 function restockLibrary() {
