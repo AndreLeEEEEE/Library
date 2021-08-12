@@ -1,7 +1,4 @@
-let book1 = new Book("Gulliver's Travels", "Jonathan Swift", 300, true);
-let book2 = new Book("Do the Hoogie", "P.J.", 2, false);
-let book3 = new Book("How to fry an egg", "Thompson", 800, true);
-let myLibrary = [book1, book2, book3];
+let myLibrary = [];
 
 function Book(name, author, pages, read) {
     this.name = name;
@@ -13,7 +10,27 @@ function Book(name, author, pages, read) {
 document.getElementById("addBook").
         addEventListener("click", () => addBookToLibrary());
 
+document.querySelector(".affirmative").
+        addEventListener("click", () => processNewBook());
+
+document.querySelector(".non-affirmative").
+        addEventListener("click", () => clearForm());
+
 function addBookToLibrary() {
+    document.getElementById("form").style.display = "block";
+}
+
+function clearForm() {
+    document.getElementById("booktitle").value = "";
+    document.getElementById("bookauthor").value = "";
+    document.getElementById("bookpages").value = "";
+    if (document.getElementById("isread").checked) {
+        document.getElementById("isread").checked = false
+    }
+    document.getElementById("form").style.display = "none";
+}
+
+function restockLibrary() {
     let div = document.querySelector("#shelf");
     while (div.hasChildNodes()) {
         div.removeChild(div.lastElementChild);
@@ -71,5 +88,16 @@ function readStatus(toggleRead, isRead) {
 
 function removeBook(currentBook) {
     myLibrary = myLibrary.filter(book => book !== currentBook);
-    addBookToLibrary();
+    restockLibrary();
+}
+
+function processNewBook() {
+    let title = document.getElementById("booktitle").value;
+    let author = document.getElementById("bookauthor").value;
+    let pages = document.getElementById("bookpages").value;
+    let read = document.getElementById("isread").checked;
+    let newBook = new Book(title, author, pages, read);
+    myLibrary.push(newBook);
+    clearForm();
+    restockLibrary();
 }
