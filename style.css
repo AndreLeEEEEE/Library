@@ -10,7 +10,7 @@ button {
     cursor: pointer;
 }
 
-p, button, h1{
+p, button, h1 {
     font-family: 'Courier New', Courier, monospace;
     font-size: 35px;
 }

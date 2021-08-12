@@ -1,7 +1,4 @@
-let book1 = new Book("Gulliver's Travels", "Jonathan Swift", 300, true);
-let book2 = new Book("Do the Hoogie", "P.J.", 2, false);
-let book3 = new Book("How to fry an egg", "Thompson", 800, true);
-let myLibrary = [book1, book2, book3];
+let myLibrary = [];
 
 function Book(name, author, pages, read) {
     this.name = name;
